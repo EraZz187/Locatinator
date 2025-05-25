@@ -5,6 +5,8 @@
 #include "GPSManager.h"
 #include "IMUManager.h"
 
+//Test
+
 // --- Interne Sensor-Pointer ---
 static GPSManager* gpsPtr = nullptr;
 static IMUManager* imuPtr = nullptr;
