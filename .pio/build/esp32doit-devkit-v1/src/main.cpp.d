@@ -198,6 +198,16 @@
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/Update/src/Update.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/MD5Builder.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_rom/include/esp_rom_md5.h \
- src/mDNSHandler.h src/GPSManager.h \
+ src/mDNSHandler.h src/WebServerHandler.h src/GPSManager.h \
  .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPSPlus.h \
- .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPS++.h
+ .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPS++.h \
+ src/IMUManager.h \
+ .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/ICM20948_WE.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src/Wire.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src/SPI.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h \
+ .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h \
+ .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src/SPIFFS.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/FS/src/FS.h

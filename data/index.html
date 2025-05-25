@@ -1,43 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
+
 <head>
-  <meta charset="UTF-8">
-  <title>ESP32 Sensorwerte</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      color: #333;
-    }
-    #sensorwert {
-      font-weight: bold;
-      color: #007BFF;
-      font-size: 2em;
-    }
-  </style>
-  <script>
-    // Funktion zum Abrufen des Sensorwertes vom Server
-    function updateSensor() {
-      fetch('/sensor')
-        .then(response => response.json()) // JSON parsen
-        .then(data => {
-          document.getElementById("sensorwert").textContent = data.wert;
-        })
-        .catch(console.error);
-    }
-
-    // Sensorwert alle 2 Sekunden aktualisieren
-    setInterval(updateSensor, 2000);
-
-    // Beim Laden der Seite sofort Wert abrufen
-    window.onload = updateSensor;
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js"></script>
+  <title>Locatinator</title>
 </head>
+
 <body>
-  <h1>Sensorwert: <span id="sensorwert">---</span></h1>
+  <div class="container">
+    <h1>Sensor-Daten</h1>
+
+    <h2>GPS (NEO-6M):</h2>
+    <p>Anzahl Satelliten gefunden: <span id="sat">...</span></p>
+    <p>Breitengrad: <span id="lat">...</span></p>
+    <p>Längengrad: <span id="lon">...</span></p>
+    <p>Höhenmeter m.ü.M: <span id="alt">...</span></p>
+
+    <h2>Achsensensor (ICM-20948):</h2>
+    <p>Temperatursensor in °C: <span id="temp">...</span></p>
+    <p>Magnetsensor in μTesla: RX: <span id="magx">...</span>, RY: <span id="magy">...</span>, RZ: <span id="magz">...</span></p>
+    <p>Beschleunigungssensor in g: X: <span id="accx">...</span>, Y: <span id="accy">...</span>, Z: <span id="accz">...</span></p>
+    <p>Gyroskop in Grad: RX: <span id="gyrox">...</span>, RY: <span id="gyroy">...</span>, RZ: <span id="gyroz">...</span></p>
+  </div>
 </body>
+
 </html>

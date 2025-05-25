@@ -1,4 +1,7 @@
 .pio/build/esp32doit-devkit-v1/src/GPSManager.cpp.o: src/GPSManager.cpp \
+ src/GPSManager.h \
+ .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPSPlus.h \
+ .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPS++.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp_arduino_version.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/FreeRTOS.h \
@@ -132,7 +135,4 @@
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/spi_flash/include/esp_spi_flash_counters.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/soc/esp32/spiram.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/io_pin_remap.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
- src/GPSManager.h \
- .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPSPlus.h \
- .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPS++.h
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h
