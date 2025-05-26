@@ -7,6 +7,8 @@
 #include "GPSManager.h"
 #include "IMUManager.h"
 
+#define DEBUG_
+
 // Zugangsdaten und Netzwerkkonfiguration
 const char *ap_ssid = "locatinator";
 const char *ap_password = "12345678";
@@ -29,35 +31,48 @@ long tick = 0;
 void setup()
 {
   Serial.begin(115200);
+#ifdef DEBUG_
   Serial.println("Booting");
-  if(!SPIFFS.begin(true)) {  // true = format if mount fails
+#endif
+
+  if (!SPIFFS.begin(true))
+  { // true = format if mount fails
+#ifdef DEBUG_
     Serial.println("❌ SPIFFS konnte nicht gemountet werden!");
-  } else {
+#endif
+  }
+  else
+  {
+#ifdef DEBUG_
     Serial.println("✅ SPIFFS gemountet!");
+#endif
   }
 
-  if (SPIFFS.exists("/index.html")) {
-  Serial.println("✅ index.html gefunden!");
-  } else {
+#ifdef DEBUG_
+  if (SPIFFS.exists("/index.html"))
+  {
+    Serial.println("✅ index.html gefunden!");
+  }
+  else
+  {
     Serial.println("❌ index.html fehlt im SPIFFS!");
   }
+#endif
 
   imu.begin();
 
-  connectToWiFi(sta_ssid, sta_password, 10);                         // Verbindet sich mit dem WLAN (Station-Modus)
-  startAccessPoint(ap_ssid, ap_password, local_IP, gateway, subnet); // Startet eigenen Access Point (AP-Modus)
+  connectToWiFi(sta_ssid, sta_password, 10); // Verbindet sich mit dem WLAN (Station-Modus)
+  // startAccessPoint(ap_ssid, ap_password, local_IP, gateway, subnet); // Startet eigenen Access Point (AP-Modus)
   setupWebServer(server, gps, imu);
-  setupMDNS(sta_hostname);                                           // Startet mDNS-Dienst (z. B. locatinator.local erreichbar)
-  setupOTA(sta_hostname);                                            // Initialisiert OTA (Over-the-Air) Updates
+  setupMDNS(sta_hostname); // Startet mDNS-Dienst (z. B. locatinator.local erreichbar)
+  setupOTA(sta_hostname);  // Initialisiert OTA (Over-the-Air) Updates
 
-  cachedHtml = loadHtmlFile("/index.html");                          // HTML-Seite aus SPIFFS laden und im RAM cachen
+  cachedHtml = loadHtmlFile("/index.html"); // HTML-Seite aus SPIFFS laden und im RAM cachen
 }
 
 void loop()
 {
   tick++;
-  ArduinoOTA.handle();                                               // OTA-Handler muss aktiv aufgerufen werden
-  yield();                                                           // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen
-  handleClient(server, cachedHtml, gps, imu, tick);                  // Webserver: Clientanfragen verarbeiten und HTML-Seite ausliefern
-  yield();                                                           // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen
+  ArduinoOTA.handle();                                     // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
+  handleClient(server, cachedHtml, gps, imu, tick); // Webserver: Clientanfragen verarbeiten und HTML-Seite ausliefern
 }

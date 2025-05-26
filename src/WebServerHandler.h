@@ -1,4 +1,6 @@
 #pragma once
+#define DEBUG_
+
 #include <WiFi.h>
 #include <GPSManager.h>
 #include <IMUManager.h>

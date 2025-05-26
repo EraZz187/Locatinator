@@ -1,4 +1,5 @@
 #pragma once
+#define DEBUG_
 
 #include <ICM20948_WE.h>
 

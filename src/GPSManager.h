@@ -1,4 +1,6 @@
 #pragma once
+#define DEBUG_
+
 #include <TinyGPSPlus.h>
 
 class GPSManager

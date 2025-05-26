@@ -1,4 +1,4 @@
-async function fetchSensorData() {
+async function fetchSensorDataLoop() {
   try {
     const response = await fetch('/sensor');
     if (!response.ok) throw new Error('Netzwerkfehler');
@@ -6,31 +6,26 @@ async function fetchSensorData() {
     const data = await response.json();
 
     document.getElementById('sat').textContent = data.SAT_COUNT;
-    document.getElementById('lat').textContent = data.LAT;
-    document.getElementById('lon').textContent = data.LON;
-    document.getElementById('alt').textContent = data.ALT;
-
-    document.getElementById('temp').textContent = data.TEMP;
-
-    document.getElementById('magx').textContent = data.MAGX;
-    document.getElementById('magy').textContent = data.MAGY;
-    document.getElementById('magz').textContent = data.MAGZ;
-
-    document.getElementById('accx').textContent = data.ACCX;
-    document.getElementById('accy').textContent = data.ACCY;
-    document.getElementById('accz').textContent = data.ACCZ;
-
-    document.getElementById('gyrox').textContent = data.GYROX;
-    document.getElementById('gyroy').textContent = data.GYROY;
-    document.getElementById('gyroz').textContent = data.GYROZ;
-    
+    document.getElementById('lat').textContent = data.LAT.toFixed(3);
+    document.getElementById('lon').textContent = data.LON.toFixed(3);
+    document.getElementById('alt').textContent = data.ALT.toFixed(3);
+    document.getElementById('temp').textContent = data.TEMP.toFixed(3);
+    document.getElementById('magx').textContent = data.MAGX.toFixed(3);
+    document.getElementById('magy').textContent = data.MAGY.toFixed(3);
+    document.getElementById('magz').textContent = data.MAGZ.toFixed(3);
+    document.getElementById('accx').textContent = data.ACCX.toFixed(3);
+    document.getElementById('accy').textContent = data.ACCY.toFixed(3);
+    document.getElementById('accz').textContent = data.ACCZ.toFixed(3);
+    document.getElementById('gyrox').textContent = data.GYROX.toFixed(3);
+    document.getElementById('gyroy').textContent = data.GYROY.toFixed(3);
+    document.getElementById('gyroz').textContent = data.GYROZ.toFixed(3);
     document.getElementById('tick').textContent = data.TICK;
-
   } catch (error) {
     console.error('Fehler beim Laden der Sensor-Daten:', error);
+  } finally {
+    // Wiederhole, aber erst nach vollständigem Abschluss
+    setTimeout(fetchSensorDataLoop, 200);
   }
 }
 
-
-setInterval(fetchSensorData, 5000); // Daten alle 5 Sekunden aktualisieren
-fetchSensorData(); // Direkt nach Laden der Seite initial laden
+fetchSensorDataLoop(); // Start

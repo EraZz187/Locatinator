@@ -1,23 +1,19 @@
 #include "WebServerHandler.h"
-#include <WiFi.h>
-#include "WiFiManager.h"
-#include "SPIFFS.h"
-#include "GPSManager.h"
-#include "IMUManager.h"
+#include <SPIFFS.h>
 
-// --- Initialisierung des Webservers inkl. Sensorreferenzen ---
+// Starte den Webserver
 void setupWebServer(WiFiServer &server, GPSManager &gps, IMUManager &imu)
 {
   server.begin();
 }
 
-// --- Hauptfunktion zur Clientverarbeitung ---
+// Bearbeite ankommende Client-Verbindung
 void handleClient(WiFiServer &server, const String &htmlPage, GPSManager &gps, IMUManager &imu, long tick)
 {
   WiFiClient client = server.available();
   if (!client)
     return;
-  
+
   String request = "";
   while (client.connected())
   {
@@ -26,11 +22,9 @@ void handleClient(WiFiServer &server, const String &htmlPage, GPSManager &gps, I
       char c = client.read();
       request += c;
 
-      //Serial.println("Request erhalten:\n" + request);
-
       if (request.endsWith("\r\n\r\n"))
-      {                                // Anfrage
-        //routeRequest(request, client, gps, imu, tick); // Aufruf Router
+      {
+        routeRequest(request, client, gps, imu, tick);
         break;
       }
     }
@@ -38,19 +32,27 @@ void handleClient(WiFiServer &server, const String &htmlPage, GPSManager &gps, I
 
   client.flush();
   client.stop();
+#ifdef DEBUG_
   Serial.println("❎ Client getrennt");
+#endif
 }
 
-// --- Routing: Liefert JSON oder statische Dateien aus ---
+// Hilfsfunktion zum Bereinigen von float-Werten (NAN oder INF -> 0.0)
+float sanitize(float val) {
+  if (isnan(val) || isinf(val)) return 0.0;
+  return val;
+}
+
+// Routenhandler: JSON oder statische Dateien liefern
 void routeRequest(const String &request, WiFiClient &client, GPSManager &gps, IMUManager &imu, long tick)
 {
-  String path = "/index.html"; // Standard
+  String path = "/index.html";
 
   int firstLineEnd = request.indexOf("\r\n");
   String firstLine = request.substring(0, firstLineEnd);
-
   int firstSpace = firstLine.indexOf(' ');
   int secondSpace = firstLine.indexOf(' ', firstSpace + 1);
+
   if (firstSpace >= 0 && secondSpace > firstSpace)
   {
     path = firstLine.substring(firstSpace + 1, secondSpace);
@@ -58,7 +60,6 @@ void routeRequest(const String &request, WiFiClient &client, GPSManager &gps, IM
       path = "/index.html";
   }
 
-  // === Sensor-Daten als JSON ausgeben ===
   if (path == "/sensor")
   {
     client.println("HTTP/1.1 200 OK");
@@ -67,60 +68,30 @@ void routeRequest(const String &request, WiFiClient &client, GPSManager &gps, IM
     client.println();
 
     client.println("{");
-    client.print("\"SAT_COUNT\": ");
-    client.print(gps.getSatelitesCount());
-    client.println(",");
-    client.print("\"LAT\": ");
-    client.print(gps.getLatitude(), 6);
-    client.println(",");
-    client.print("\"LON\": ");
-    client.print(gps.getLongitude(), 6);
-    client.println(",");
-    client.print("\"ALT\": ");
-    client.print(gps.getAltitude(), 1);
-    client.println(",");
-    client.print("\"TEMP\": ");
-    client.print(imu.getTemperature(), 1);
-    client.println(",");
-    client.print("\"ACCX\": ");
-    client.print(imu.getAccX(), 2);
-    client.println(",");
-    client.print("\"ACCY\": ");
-    client.print(imu.getAccY(), 2);
-    client.println(",");
-    client.print("\"ACCZ\": ");
-    client.print(imu.getAccZ(), 2);
-    client.println(",");
-    client.print("\"GYROX\": ");
-    client.print(imu.getGyroX(), 2);
-    client.println(",");
-    client.print("\"GYROY\": ");
-    client.print(imu.getGyroY(), 2);
-    client.println(",");
-    client.print("\"GYROZ\": ");
-    client.print(imu.getGyroZ(), 2);
-    client.println(",");
-    client.print("\"MAGX\": ");
-    client.print(imu.getMagX(), 2);
-    client.println(",");
-    client.print("\"MAGY\": ");
-    client.print(imu.getMagY(), 2);
-    client.println(",");
-    client.print("\"MAGZ\": ");
-    client.print(imu.getMagZ(), 2);
-    client.println(",");
-    client.print("\"TICK\": ");
-    client.print(tick, 2);
-    client.println("\n}");
+    client.printf("\"SAT_COUNT\": %d,\n", gps.getSatelitesCount());
+    client.printf("\"LAT\": %.6f,\n", sanitize(gps.getLatitude()));
+    client.printf("\"LON\": %.6f,\n", sanitize(gps.getLongitude()));
+    client.printf("\"ALT\": %.1f,\n", sanitize(gps.getAltitude()));
+    client.printf("\"TEMP\": %.1f,\n", sanitize(imu.getTemperature()));
+    client.printf("\"ACCX\": %.2f,\n", sanitize(imu.getAccX()));
+    client.printf("\"ACCY\": %.2f,\n", sanitize(imu.getAccY()));
+    client.printf("\"ACCZ\": %.2f,\n", sanitize(imu.getAccZ()));
+    client.printf("\"GYROX\": %.2f,\n", sanitize(imu.getGyroX()));
+    client.printf("\"GYROY\": %.2f,\n", sanitize(imu.getGyroY()));
+    client.printf("\"GYROZ\": %.2f,\n", sanitize(imu.getGyroZ()));
+    client.printf("\"MAGX\": %.2f,\n", sanitize(imu.getMagX()));
+    client.printf("\"MAGY\": %.2f,\n", sanitize(imu.getMagY()));
+    client.printf("\"MAGZ\": %.2f,\n", sanitize(imu.getMagZ()));
+    client.printf("\"TICK\": %ld\n", tick);
+    client.println("}");
 
-
-    Serial.println("\n" + tick);
+    Serial.println("JSON-Daten gesendet, tick=" + String(tick));
     return;
   }
 
-  // Versuche statische Datei zu laden
+  // Statische Datei aus SPIFFS ausliefern
   Serial.println("📥 Angeforderter Pfad: " + path);
-  File file = SPIFFS.open(path);
+  File file = SPIFFS.open(path, "r");
   if (!file || file.isDirectory())
   {
     client.println("HTTP/1.1 404 Not Found");
@@ -131,6 +102,7 @@ void routeRequest(const String &request, WiFiClient &client, GPSManager &gps, IM
     return;
   }
 
+  // Content-Type ermitteln
   String contentType = "text/html";
   if (path.endsWith(".js"))
     contentType = "application/javascript";
@@ -149,21 +121,38 @@ void routeRequest(const String &request, WiFiClient &client, GPSManager &gps, IM
   client.println("Connection: close");
   client.println();
 
+  // Datei chunkweise senden (um WDT zu vermeiden)
+  const size_t CHUNK_SIZE = 128;
+  uint8_t buffer[CHUNK_SIZE];
   while (file.available())
   {
-    client.write(file.read());
+    size_t toSend = (file.available() < CHUNK_SIZE) ? file.available() : CHUNK_SIZE;
+    file.read(buffer, toSend);
+
+    if (!client.connected())
+      break;
+
+    client.write(buffer, toSend);
+
+    yield(); // Watchdog-Timeout verhindern
   }
+
   file.close();
+  client.stop();
 }
 
+// HTML-Datei mit Platzhaltern laden (IP-Adressen ersetzen)
 String loadHtmlFile(const char *path)
 {
-  File file = SPIFFS.open(path);
+  File file = SPIFFS.open(path, "r");
   if (!file || file.isDirectory())
     return "<h1>Datei nicht gefunden</h1>";
+
   String content = file.readString();
   file.close();
+
   content.replace("{{STA_IP}}", WiFi.localIP().toString());
   content.replace("{{AP_IP}}", WiFi.softAPIP().toString());
+
   return content;
 }
