@@ -24,6 +24,8 @@ IMUManager imu(5);
 
 String cachedHtml;
 
+long tick = 0;
+
 void setup()
 {
   Serial.begin(115200);
@@ -45,14 +47,17 @@ void setup()
   connectToWiFi(sta_ssid, sta_password, 10);                         // Verbindet sich mit dem WLAN (Station-Modus)
   startAccessPoint(ap_ssid, ap_password, local_IP, gateway, subnet); // Startet eigenen Access Point (AP-Modus)
   setupWebServer(server, gps, imu);
-  setupOTA(sta_hostname);                                            // Initialisiert OTA (Over-the-Air) Updates
   setupMDNS(sta_hostname);                                           // Startet mDNS-Dienst (z. B. locatinator.local erreichbar)
+  setupOTA(sta_hostname);                                            // Initialisiert OTA (Over-the-Air) Updates
 
   cachedHtml = loadHtmlFile("/index.html");                          // HTML-Seite aus SPIFFS laden und im RAM cachen
 }
 
 void loop()
 {
-  handleOTA();                                                       // Handhabt eingehende OTA-Anfragen
-  handleClient(server, cachedHtml);                                  // Webserver: Clientanfragen verarbeiten und HTML-Seite ausliefern
+  tick++;
+  ArduinoOTA.handle();                                               // OTA-Handler muss aktiv aufgerufen werden
+  yield();                                                           // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen
+  handleClient(server, cachedHtml, gps, imu, tick);                  // Webserver: Clientanfragen verarbeiten und HTML-Seite ausliefern
+  yield();                                                           // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen
 }

@@ -23,6 +23,8 @@ async function fetchSensorData() {
     document.getElementById('gyrox').textContent = data.GYROX;
     document.getElementById('gyroy').textContent = data.GYROY;
     document.getElementById('gyroz').textContent = data.GYROZ;
+    
+    document.getElementById('tick').textContent = data.TICK;
 
   } catch (error) {
     console.error('Fehler beim Laden der Sensor-Daten:', error);

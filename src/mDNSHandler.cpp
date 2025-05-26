@@ -8,5 +8,6 @@ void setupMDNS(const char* hostname) {
   }
 
   MDNS.addService("http", "tcp", 80);
-  Serial.println("✅ mDNS gestartet " + MDNS.hostname(0));
+  Serial.println("✅ mDNS gestartet ");
+  Serial.println("\n" + MDNS.hostname(1));
 }
