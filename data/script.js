@@ -24,7 +24,7 @@ async function fetchSensorDataLoop() {
     console.error('Fehler beim Laden der Sensor-Daten:', error);
   } finally {
     // Wiederhole, aber erst nach vollständigem Abschluss
-    setTimeout(fetchSensorDataLoop, 200);
+    setTimeout(fetchSensorDataLoop, 1000);
   }
 }
 

@@ -6,6 +6,7 @@
 #include <SPIFFS.h>
 #include "GPSManager.h"
 #include "IMUManager.h"
+#include "WebServerHandler.h"
 
 #define DEBUG_
 
@@ -20,7 +21,7 @@ IPAddress local_IP(192, 168, 1, 1);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 
-WiFiServer server(80);
+AsyncWebServer server(80);
 GPSManager gps;
 IMUManager imu(5);
 
@@ -43,8 +44,8 @@ void setup()
   }
   else
   {
-#ifdef DEBUG_
-    Serial.println("✅ SPIFFS gemountet!");
+#ifdef DEBUG_    
+  Serial.println("✅ SPIFFS gemountet!");
 #endif
   }
 
@@ -61,9 +62,9 @@ void setup()
 
   imu.begin();
 
-  connectToWiFi(sta_ssid, sta_password, 10); // Verbindet sich mit dem WLAN (Station-Modus)
-  // startAccessPoint(ap_ssid, ap_password, local_IP, gateway, subnet); // Startet eigenen Access Point (AP-Modus)
-  setupWebServer(server, gps, imu);
+  //(connectToWiFi(sta_ssid, sta_password, 10); // Verbindet sich mit dem WLAN (Station-Modus)
+  startAccessPoint(ap_ssid, ap_password, local_IP, gateway, subnet); // Startet eigenen Access Point (AP-Modus)
+  setupWebServer(server, gps, imu, tick);
   setupMDNS(sta_hostname); // Startet mDNS-Dienst (z. B. locatinator.local erreichbar)
   setupOTA(sta_hostname);  // Initialisiert OTA (Over-the-Air) Updates
 
@@ -74,5 +75,4 @@ void loop()
 {
   tick++;
   ArduinoOTA.handle();                                     // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
-  handleClient(server, cachedHtml, gps, imu, tick); // Webserver: Clientanfragen verarbeiten und HTML-Seite ausliefern
 }
