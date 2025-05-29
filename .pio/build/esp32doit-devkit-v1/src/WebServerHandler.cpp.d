@@ -1,6 +1,6 @@
 .pio/build/esp32doit-devkit-v1/src/WebServerHandler.cpp.o: \
  src/WebServerHandler.cpp src/WebServerHandler.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/ESPAsyncWebServer.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/ESPAsyncWebServer.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp_arduino_version.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/FreeRTOS.h \
@@ -136,10 +136,32 @@
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/io_pin_remap.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/FS/src/FS.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/StringArray.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/tcpbase.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/opt.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/lwipopts.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include/sys/ioctl.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_task.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos/FreeRTOSConfig.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/netif/dhcp_state.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/sntp/sntp_get_set_time.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/debug.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/arch.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/cc.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/sys_arch.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/vfs_lwip.h \
+ .pio/libdeps/esp32doit-devkit-v1/AsyncTCP/src/AsyncTCP.h \
+ .pio/libdeps/esp32doit-devkit-v1/AsyncTCP/src/AsyncTCPVersion.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPv6Address.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip6_addr.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/def.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip6_zone.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip_addr.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/def.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip4_addr.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/pbuf.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/err.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFi.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPv6Address.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiType.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_wifi/include/esp_wifi_types.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_wifi/include/esp_private/esp_wifi_types_private.h \
@@ -162,26 +184,7 @@
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_eth/include/esp_eth_phy.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/tcpip_adapter/include/tcpip_adapter.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/tcpip_adapter/include/tcpip_adapter_types.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip_addr.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/opt.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/lwipopts.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include/sys/ioctl.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_task.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos/FreeRTOSConfig.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/netif/dhcp_state.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/sntp/sntp_get_set_time.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/debug.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/arch.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/cc.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/sys_arch.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/port/esp32/include/arch/vfs_lwip.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/def.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip4_addr.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip6_addr.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/def.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/ip6_zone.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/include/apps/dhcpserver/dhcpserver.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/err.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_netif/include/esp_netif_sta_list.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_wifi/include/esp_smartconfig.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/wifi_provisioning/include/wifi_provisioning/manager.h \
@@ -197,13 +200,12 @@
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiUdp.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/Udp.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/cbuf.h \
- .pio/libdeps/esp32doit-devkit-v1/AsyncTCP/src/AsyncTCP.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/pbuf.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/WebResponseImpl.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/WebHandlerImpl.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/AsyncWebSocket.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/AsyncWebSynchronization.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/AsyncEventSource.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/literals.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/AsyncWebServerVersion.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/AsyncEventSource.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/AsyncWebSocket.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/WebHandlerImpl.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/WebResponseImpl.h \
  src/GPSManager.h \
  .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPSPlus.h \
  .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPS++.h \

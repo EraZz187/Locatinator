@@ -7,11 +7,23 @@
 #include "GPSManager.h"
 #include "IMUManager.h"
 #include "WebServerHandler.h"
+#include "WebSerialManager.h"
 
+// Debug
 #define DEBUG_
+long tick = 0;
 
-// Zugangsdaten und Netzwerkkonfiguration
-const char *ap_ssid = "locatinator";
+// GPS
+GPSManager gps(1);
+#define RXD_GPS 16
+#define TXD_GPS 17
+#define GPS_BAUD 9600
+
+// IMU
+IMUManager imu(5);
+
+// Network
+const char *ap_ssid = "locatinator_AP";
 const char *ap_password = "12345678";
 const char *sta_ssid = "TurkishAirlines_";
 const char *sta_password = "123Polizei";
@@ -22,12 +34,8 @@ IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 
 AsyncWebServer server(80);
-GPSManager gps;
-IMUManager imu(5);
 
 String cachedHtml;
-
-long tick = 0;
 
 void setup()
 {
@@ -37,19 +45,14 @@ void setup()
 #endif
 
   if (!SPIFFS.begin(true))
-  { // true = format if mount fails
-#ifdef DEBUG_
+  {
     Serial.println("❌ SPIFFS konnte nicht gemountet werden!");
-#endif
   }
   else
   {
-#ifdef DEBUG_    
-  Serial.println("✅ SPIFFS gemountet!");
-#endif
+    Serial.println("✅ SPIFFS gemountet!");
   }
 
-#ifdef DEBUG_
   if (SPIFFS.exists("/index.html"))
   {
     Serial.println("✅ index.html gefunden!");
@@ -58,11 +61,13 @@ void setup()
   {
     Serial.println("❌ index.html fehlt im SPIFFS!");
   }
-#endif
 
   imu.begin();
+  gps.begin(GPS_BAUD, SERIAL_8N1, RXD_GPS, TXD_GPS);
 
-  //(connectToWiFi(sta_ssid, sta_password, 10); // Verbindet sich mit dem WLAN (Station-Modus)
+  WebSerialManager::begin(&server);
+
+  //connectToWiFi(sta_ssid, sta_password, 10);                         // Verbindet sich mit dem WLAN (Station-Modus)
   startAccessPoint(ap_ssid, ap_password, local_IP, gateway, subnet); // Startet eigenen Access Point (AP-Modus)
   setupWebServer(server, gps, imu, tick);
   setupMDNS(sta_hostname); // Startet mDNS-Dienst (z. B. locatinator.local erreichbar)
@@ -74,5 +79,5 @@ void setup()
 void loop()
 {
   tick++;
-  ArduinoOTA.handle();                                     // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
+  ArduinoOTA.handle(); // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
 }

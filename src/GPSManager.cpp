@@ -1,11 +1,13 @@
 #include "GPSManager.h"
 #include <Arduino.h>
+#include <TinyGPSPlus.h>
 
-GPSManager::GPSManager() 
-    : gps() {}
+GPSManager::GPSManager(u_int8_t uartPin) 
+    : GPSSerial(uartPin), uartPin(uartPin) {}
 
-void GPSManager::begin() {
-    Serial.println("📡 GPS gestartet!");
+void GPSManager::begin(unsigned long baud, uint32_t config, int8_t rxPin, int8_t txPin) {
+    GPSSerial.begin(baud, config, rxPin, txPin);
+    Serial.println("📡 UART gestartet!");
 }
 
 void GPSManager::update(Stream &gpsStream) {

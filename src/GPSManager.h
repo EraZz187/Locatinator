@@ -3,8 +3,7 @@
 
 #include <TinyGPSPlus.h>
 
-class GPSManager
-{
+class GPSManager {
 public:
     struct dateTime
     {
@@ -17,8 +16,8 @@ public:
         uint16_t centisecond;
     };
 
-    GPSManager();
-    void begin();
+    GPSManager(u_int8_t uartPin);
+    void begin(unsigned long baud, uint32_t config, int8_t rxPin, int8_t txPin);
     void update(Stream &gpsStream);     // <- WICHTIG: GPS-Daten einspeisen
 
     uint8_t getSatelitesCount();
@@ -30,5 +29,7 @@ public:
     bool hasFix();                      // Optional: liefert true, wenn gültiger GPS-Fix vorliegt
 
 private:
+    u_int8_t uartPin;
+    HardwareSerial GPSSerial;
     TinyGPSPlus gps;
 };

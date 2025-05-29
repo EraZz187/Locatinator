@@ -199,16 +199,18 @@
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/MD5Builder.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_rom/include/esp_rom_md5.h \
  src/mDNSHandler.h src/WebServerHandler.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/ESPAsyncWebServer.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/ESPAsyncWebServer.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/FS/src/FS.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/StringArray.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/tcpbase.h \
  .pio/libdeps/esp32doit-devkit-v1/AsyncTCP/src/AsyncTCP.h \
+ .pio/libdeps/esp32doit-devkit-v1/AsyncTCP/src/AsyncTCPVersion.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/pbuf.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/WebResponseImpl.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/WebHandlerImpl.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/AsyncWebSocket.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/AsyncWebSynchronization.h \
- .pio/libdeps/esp32doit-devkit-v1/ESP\ Async\ WebServer/src/AsyncEventSource.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/literals.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/AsyncWebServerVersion.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/AsyncEventSource.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/AsyncWebSocket.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/WebHandlerImpl.h \
+ .pio/libdeps/esp32doit-devkit-v1/ESPAsyncWebServer/src/WebResponseImpl.h \
  src/GPSManager.h \
  .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPSPlus.h \
  .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPS++.h \
@@ -220,4 +222,5 @@
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h \
  .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h \
  .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src/SPIFFS.h
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src/SPIFFS.h \
+ src/WebSerialManager.h
