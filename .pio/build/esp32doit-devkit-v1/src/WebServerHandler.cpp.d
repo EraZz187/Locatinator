@@ -209,6 +209,7 @@
  src/GPSManager.h \
  .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPSPlus.h \
  .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPS++.h \
+ C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
  src/IMUManager.h \
  .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/ICM20948_WE.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src/Wire.h \

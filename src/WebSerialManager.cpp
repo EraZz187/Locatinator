@@ -4,7 +4,6 @@
 namespace WebSerialManager
 {
 
-    // Optional: Verarbeitung empfangener Daten
     void onWebSerialReceive(uint8_t *data, size_t len)
     {
         String received;
@@ -19,7 +18,18 @@ namespace WebSerialManager
     void begin(AsyncWebServer *server)
     {
         WebSerial.begin(server);
-        WebSerial.onMessage(onWebSerialReceive); // ✅ korrekt
+        WebSerial.onMessage(onWebSerialReceive);
         WebSerial.println("WebSerial gestartet.");
     }
+
+    void write(const String& message)
+    {
+        WebSerial.print(message);
+    }
+
+    void println(const String& message)
+    {
+        WebSerial.println(message);
+    }
+
 }

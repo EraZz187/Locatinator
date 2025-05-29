@@ -14,7 +14,7 @@
 long tick = 0;
 
 // GPS
-GPSManager gps(1);
+GPSManager gps(2);
 #define RXD_GPS 16
 #define TXD_GPS 17
 #define GPS_BAUD 9600
@@ -80,4 +80,7 @@ void loop()
 {
   tick++;
   ArduinoOTA.handle(); // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
+  gps.update();
+  WebSerialManager::println(String(gps.getSatelitesCount()));
+  delay(1000);
 }
