@@ -8,16 +8,28 @@
 #include "IMUManager.h"
 #include "WebServerHandler.h"
 #include "WebSerialManager.h"
+#include "Display.h"
 
 // Debug
 #define DEBUG_
 long tick = 0;
+
+// SPI-Pinbelegung
+#define TFT_MOSI 23
+#define TFT_SCK  18
 
 // GPS
 GPSManager gps(2);
 #define RXD_GPS 16
 #define TXD_GPS 17
 #define GPS_BAUD 9600
+
+//TFT Monitor
+#define TFT_CS   15
+#define TFT_DC   2
+#define TFT_RST  4
+
+Display display(TFT_CS, TFT_DC, TFT_RST, TFT_MOSI, TFT_SCK);
 
 // IMU
 IMUManager imu(5);
@@ -32,6 +44,7 @@ const char *sta_hostname = "locatinator";
 IPAddress local_IP(192, 168, 1, 1);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
+
 
 AsyncWebServer server(80);
 
@@ -64,6 +77,11 @@ void setup()
 
   imu.begin();
   gps.begin(GPS_BAUD, SERIAL_8N1, RXD_GPS, TXD_GPS);
+
+  //TFT Monitor
+    display.init();
+    display.showMessage("Hallo ILI9488!");
+
 
   WebSerialManager::begin(&server);
 
