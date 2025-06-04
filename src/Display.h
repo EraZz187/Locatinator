@@ -1,14 +1,13 @@
 #pragma once
 
-#include <ILI9488.h>
+#include <TFT_eSPI.h>
 
 class Display {
 public:
-    Display(uint8_t cs, uint8_t dc, uint8_t rst, uint8_t mosi, uint8_t sck);
+    Display();
     void init();
     void showMessage(const char* msg);
 
 private:
-    uint8_t _mosi, _sck;
-    ILI9488 tft;
+    TFT_eSPI tft;
 };

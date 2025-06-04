@@ -25,11 +25,7 @@ GPSManager gps(2);
 #define GPS_BAUD 9600
 
 //TFT Monitor
-#define TFT_CS   15
-#define TFT_DC   2
-#define TFT_RST  4
-
-Display display(TFT_CS, TFT_DC, TFT_RST, TFT_MOSI, TFT_SCK);
+Display display;
 
 // IMU
 IMUManager imu(5);
@@ -80,7 +76,7 @@ void setup()
 
   //TFT Monitor
     display.init();
-    display.showMessage("Hallo ILI9488!");
+    display.showMessage("Hallo ILI9488 via TFT_eSPI!");
 
 
   WebSerialManager::begin(&server);

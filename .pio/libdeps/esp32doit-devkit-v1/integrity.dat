@@ -1,7 +1,6 @@
-ayushsharma82/WebSerial @ 2.1.1
-bblanchon/ArduinoJson @ 7.4.1
-jaretburkett/ILI9488 @ 1.0.2
-mikalhart/TinyGPSPlus @ 1.1.0
 esp32async/ESPAsyncWebServer @ 3.7.7
-adafruit/Adafruit GFX Library @ 1.12.1
+bodmer/TFT_eSPI @ 2.5.43
+mikalhart/TinyGPSPlus @ 1.1.0
+bblanchon/ArduinoJson @ 7.4.1
+ayushsharma82/WebSerial @ 2.1.1
 wollewald/ICM20948_WE @ 1.2.5
