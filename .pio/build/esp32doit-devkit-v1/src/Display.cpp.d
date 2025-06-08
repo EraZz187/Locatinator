@@ -139,7 +139,7 @@
  C:/Users/DarioMeier/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h \
  .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/User_Setup_Select.h \
  .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/User_Setup.h \
- .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/TFT_Drivers/ILI9341_Defines.h \
+ .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/TFT_Drivers/ILI9488_Defines.h \
  .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/Processors/TFT_eSPI_ESP32.h \
  C:/Users/DarioMeier/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/spi_reg.h \
  C:/Users/DarioMeier/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/spi_master.h \
@@ -230,4 +230,14 @@
  .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/Fonts/Custom/Yellowtail_32.h \
  .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/Extensions/Smooth_font.h \
  .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/Extensions/Button.h \
- .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/Extensions/Sprite.h
+ .pio/libdeps/esp32doit-devkit-v1/TFT_eSPI/Extensions/Sprite.h \
+ src/GPSManager.h \
+ .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPSPlus.h \
+ .pio/libdeps/esp32doit-devkit-v1/TinyGPSPlus/src/TinyGPS++.h \
+ C:/Users/DarioMeier/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
+ src/IMUManager.h \
+ .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/ICM20948_WE.h \
+ C:/Users/DarioMeier/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src/Wire.h \
+ C:/Users/DarioMeier/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
+ .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h \
+ .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h

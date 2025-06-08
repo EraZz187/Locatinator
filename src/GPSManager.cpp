@@ -26,7 +26,7 @@ float GPSManager::getLatitude() {
     return gps.location.isValid() ? gps.location.lat() : 0.0f;
 }
 
-float GPSManager::getLongitude() {
+float GPSManager::getLongitude(){
     return gps.location.isValid() ? gps.location.lng() : 0.0f;
 }
 

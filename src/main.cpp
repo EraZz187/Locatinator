@@ -14,10 +14,6 @@
 #define DEBUG_
 long tick = 0;
 
-// SPI-Pinbelegung
-#define TFT_MOSI 23
-#define TFT_SCK  18
-
 // GPS
 GPSManager gps(2);
 #define RXD_GPS 16
@@ -75,10 +71,9 @@ void setup()
   gps.begin(GPS_BAUD, SERIAL_8N1, RXD_GPS, TXD_GPS);
 
   //TFT Monitor
-    display.init();
-    display.showMessage("Hallo ILI9488 via TFT_eSPI!");
-
-
+  // init Display + Sensoren
+  display.init();
+  
   WebSerialManager::begin(&server);
 
   //connectToWiFi(sta_ssid, sta_password, 10);                         // Verbindet sich mit dem WLAN (Station-Modus)
@@ -95,6 +90,9 @@ void loop()
   tick++;
   ArduinoOTA.handle(); // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
   gps.update();
+
+  display.update(gps,imu); 
+
   WebSerialManager::println(String(gps.getSatelitesCount()));
   delay(1000);
 }

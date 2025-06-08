@@ -21,7 +21,7 @@ public:
     void update();
 
     uint8_t getSatelitesCount();
-    float getLatitude();
+    float getLatitude() ;
     float getLongitude();
     float getAltitude();
     dateTime getDateTime();
