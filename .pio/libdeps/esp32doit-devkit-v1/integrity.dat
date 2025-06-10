@@ -1,5 +1,6 @@
-esp32async/ESPAsyncWebServer @ 3.7.7
-bblanchon/ArduinoJson @ 7.4.1
 wollewald/ICM20948_WE @ 1.2.5
 ayushsharma82/WebSerial @ 2.1.1
+esp32async/ESPAsyncWebServer @ 3.7.7
+bodmer/TFT_eSPI @ 2.5.43
+bblanchon/ArduinoJson @ 7.4.1
 mikalhart/TinyGPSPlus @ 1.1.0

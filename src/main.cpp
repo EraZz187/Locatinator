@@ -8,19 +8,31 @@
 #include "IMUManager.h"
 #include "WebServerHandler.h"
 #include "WebSerialManager.h"
+#include "Display.h"
 
 // Debug
 #define DEBUG_
 long tick = 0;
 
+//TFT Monitor
+Display display;
+
 // GPS
-GPSManager gps(1);
+GPSManager gps(2);
 #define RXD_GPS 16
 #define TXD_GPS 17
 #define GPS_BAUD 9600
 
 // IMU
-IMUManager imu(5);
+#define USE_SPI true
+#define CS_PIN 5
+#define MOSI_PIN 23
+#define MISO_PIN 19
+#define SCK_PIN 18
+
+SPIClass mySPI(VSPI);
+IMUManager imu(&mySPI, CS_PIN, MOSI_PIN, MISO_PIN, SCK_PIN, USE_SPI);
+
 
 // Network
 const char *ap_ssid = "locatinator_AP";
@@ -80,4 +92,14 @@ void loop()
 {
   tick++;
   ArduinoOTA.handle(); // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
+  gps.update();
+
+  display.update(gps,imu); 
+  
+  WebSerialManager::println("Gefundene Sateliten: " + String(gps.getSatelitesCount()));
+  WebSerialManager::println("Temperatur: " + String(imu.getTemperature()));
+  WebSerialManager::println("Magnetometer X: " + String(imu.getMagX()));
+
+
+  delay(1000);
 }

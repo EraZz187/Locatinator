@@ -1,18 +1,20 @@
 #include "GPSManager.h"
 #include <Arduino.h>
-#include <TinyGPSPlus.h>
 
-GPSManager::GPSManager(u_int8_t uartPin) 
-    : GPSSerial(uartPin), uartPin(uartPin) {}
+GPSManager::GPSManager(uint8_t uartNumber)
+    : uartNumber(uartNumber)
+{
+    gpsSerial = new HardwareSerial(uartNumber);
+}
 
 void GPSManager::begin(unsigned long baud, uint32_t config, int8_t rxPin, int8_t txPin) {
-    GPSSerial.begin(baud, config, rxPin, txPin);
+    gpsSerial->begin(baud, config, rxPin, txPin);
     Serial.println("📡 UART gestartet!");
 }
 
-void GPSManager::update(Stream &gpsStream) {
-    while (gpsStream.available() > 0) {
-        gps.encode(gpsStream.read());
+void GPSManager::update() {
+    while (gpsSerial->available() > 0) {
+        gps.encode(gpsSerial->read());
     }
 }
 
@@ -33,15 +35,16 @@ float GPSManager::getAltitude() {
 }
 
 GPSManager::dateTime GPSManager::getDateTime() {
-    dateTime dt = {0};
+    dateTime dt;
+    memset(&dt, 0, sizeof(dt));
 
     if (gps.date.isValid() && gps.time.isValid()) {
-        dt.day = gps.date.day();
-        dt.month = gps.date.month();
-        dt.year = gps.date.year();
-        dt.hour = gps.time.hour();
-        dt.minute = gps.time.minute();
-        dt.second = gps.time.second();
+        dt.year        = gps.date.year();
+        dt.month       = gps.date.month();
+        dt.day         = gps.date.day();
+        dt.hour        = gps.time.hour();
+        dt.minute      = gps.time.minute();
+        dt.second      = gps.time.second();
         dt.centisecond = gps.time.centisecond();
     }
 
