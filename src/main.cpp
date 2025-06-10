@@ -20,7 +20,15 @@ GPSManager gps(2);
 #define GPS_BAUD 9600
 
 // IMU
-IMUManager imu(5);
+#define USE_SPI true
+#define CS_PIN 5
+#define MOSI_PIN 23
+#define MISO_PIN 19
+#define SCK_PIN 18
+
+SPIClass mySPI(VSPI);
+IMUManager imu(&mySPI, CS_PIN, MOSI_PIN, MISO_PIN, SCK_PIN, USE_SPI);
+
 
 // Network
 const char *ap_ssid = "locatinator_AP";
