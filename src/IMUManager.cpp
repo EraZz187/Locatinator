@@ -1,8 +1,8 @@
 #include "IMUManager.h"
 #include <SPI.h>
 
-IMUManager::IMUManager(int csPin)
-    : imu(&SPI, csPin, true), csPin(csPin) {}
+IMUManager::IMUManager(int CS_PIN, int MOSI_PIN, int MISO_PIN, int SCK_PIN, bool USE_SPI)
+    : imu(&SPI, CS_PIN, MOSI_PIN, MISO_PIN, SCK_PIN, USE_SPI), CS_PIN(CS_PIN), MOSI_PIN(MOSI_PIN), MISO_PIN(MISO_PIN), SCK_PIN(SCK_PIN),  USE_SPI(USE_SPI){}
 
 void IMUManager::begin()
 {

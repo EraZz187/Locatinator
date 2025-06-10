@@ -81,6 +81,8 @@ void loop()
   tick++;
   ArduinoOTA.handle(); // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
   gps.update();
-  WebSerialManager::println(String(gps.getSatelitesCount()));
+  WebSerialManager::println("Gefundene Sateliten: " + String(gps.getSatelitesCount()));
+  WebSerialManager::println("Temperatur: " + String(imu.getTemperature()));
+  WebSerialManager::println("Magnetometer X: " + String(imu.getMagX()));
   delay(1000);
 }
