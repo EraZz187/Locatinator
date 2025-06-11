@@ -24,14 +24,7 @@ GPSManager gps(2);
 #define GPS_BAUD 9600
 
 // IMU
-#define USE_SPI true
-#define CS_PIN 5
-#define MOSI_PIN 23
-#define MISO_PIN 19
-#define SCK_PIN 18
-
-SPIClass mySPI(VSPI);
-IMUManager imu(&mySPI, CS_PIN, MOSI_PIN, MISO_PIN, SCK_PIN, USE_SPI);
+IMUManager imu(Wire); // ICM20948 address is 0x68 by default
 
 
 // Network
@@ -52,9 +45,8 @@ String cachedHtml;
 void setup()
 {
   Serial.begin(115200);
-#ifdef DEBUG_
+  delay(1000);
   Serial.println("Booting");
-#endif
 
   if (!SPIFFS.begin(true))
   {
@@ -93,13 +85,20 @@ void loop()
   tick++;
   ArduinoOTA.handle(); // gibt dem internen Task-Scheduler des ESP32 Zeit, andere Prozesse laufen zu lassen -- verhindert Abstürze durch blockierende Schleifen
   gps.update();
-
+  imu.update();
   display.update(gps,imu); 
   
   WebSerialManager::println("Gefundene Sateliten: " + String(gps.getSatelitesCount()));
-  WebSerialManager::println("Temperatur: " + String(imu.getTemperature()));
-  WebSerialManager::println("Magnetometer X: " + String(imu.getMagX()));
 
+  WebSerialManager::println("Temperatur: " + String(imu.getTemperature()));
+
+  WebSerialManager::println("Magnetometer X: " + String(imu.getMagX()));
+  WebSerialManager::println("Magnetometer Y: " + String(imu.getMagY()));
+  WebSerialManager::println("Magnetometer Z: " + String(imu.getMagZ()));
+
+  WebSerialManager::println("Aktuelle Beschleunigung X: " + String(imu.getAccX()));
+  WebSerialManager::println("Aktuelle Beschleunigung Y: " + String(imu.getAccY()));
+  WebSerialManager::println("Aktuelle Beschleunigung Z: " + String(imu.getAccZ()));
 
   delay(1000);
 }

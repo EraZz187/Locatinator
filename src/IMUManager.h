@@ -1,22 +1,42 @@
 #pragma once
 
+#include <Arduino.h>
+#include <Wire.h>
 #include <ICM20948_WE.h>
-#include <SPI.h>
 
 class IMUManager {
 public:
-    IMUManager(SPIClass* spi, int csPin, int mosiPin, int misoPin, int sckPin, bool useSpi);
-
+    IMUManager(TwoWire &w = Wire, uint8_t addr = 0x68);
     void begin();
-    float getTemperature();
-    float getAccX(), getAccY(), getAccZ();
-    float getGyroX(), getGyroY(), getGyroZ();
-    float getMagX(), getMagY(), getMagZ();
+    void update();
+
+    // Gesamtwerte
+    float getTemperature() const;
+    float getResultantG() const;
+
+    // Achsenweise Zugriff
+    float getAccX() const;
+    float getAccY() const;
+    float getAccZ() const;
+
+    float getGyroX() const;
+    float getGyroY() const;
+    float getGyroZ() const;
+
+    float getMagX() const;
+    float getMagY() const;
+    float getMagZ() const;
 
 private:
-    SPIClass* spi;
-    ICM20948_WE imu;
+    TwoWire* _wire;
+    uint8_t _addr;
+    ICM20948_WE* _imu;
 
-    int csPin, mosiPin, misoPin, sckPin;
-    bool useSpi;
+    xyzFloat acc;
+    xyzFloat gyr;
+    xyzFloat mag;
+    float temp;
+    float resultantG;
+
+    void configureSensor();
 };
