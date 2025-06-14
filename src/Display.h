@@ -12,7 +12,6 @@ public:
     void update(GPSManager &gps, IMUManager &imu);
     void showMessage(const char *msg);
     void resetMessages();
-    void setDeclination(float degrees);
 
 private:
     TFT_eSPI tft;
@@ -20,8 +19,8 @@ private:
     int maxLines = 0;
     int lineHeight = 20;
     float declination = 0.0;
-    float lastLat = 0.0f;
-    float lastLon = 0.0f;
+    float lat = 0.0f;
+    float lon = 0.0f;
 
     int drawSensorData(GPSManager &gps, IMUManager &imu);
     void printLine(const char *msg, int line);

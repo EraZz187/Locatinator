@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/style.css">
-  <script src="/script.js"></script>
   <title>Locatinator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
-
 <body>
   <div class="container">
     <h1>Sensor-Daten</h1>
+
+    <div id="kompass">
+      <svg id="kompass-svg" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="90" stroke="black" stroke-width="4" fill="white" />
+        <text x="100" y="20" text-anchor="middle" font-size="16">N</text>
+        <text x="190" y="105" text-anchor="middle" font-size="16">E</text>
+        <text x="100" y="190" text-anchor="middle" font-size="16">S</text>
+        <text x="10" y="105" text-anchor="middle" font-size="16">W</text>
+
+        <!-- Nadel rotiert um Zentrum (100,100) -->
+        <g id="nadel" transform="rotate(0 100 100)">
+          <line x1="100" y1="100" x2="100" y2="30" stroke="red" stroke-width="4" />
+        </g>
+      </svg>
+      <p id="kompassGrad">...</p>
+    </div>
 
     <h2>GPS (NEO-6M):</h2>
     <p>Anzahl Satelliten gefunden: <span id="sat">...</span></p>
@@ -23,9 +37,4 @@
     <p>Temperatursensor in °C: <span id="temp">...</span></p>
     <p>Magnetsensor in μTesla: RX: <span id="magx">...</span>, RY: <span id="magy">...</span>, RZ: <span id="magz">...</span></p>
     <p>Beschleunigungssensor in g: X: <span id="accx">...</span>, Y: <span id="accy">...</span>, Z: <span id="accz">...</span></p>
-    <p>Gyroskop in Grad: RX: <span id="gyrox">...</span>, RY: <span id="gyroy">...</span>, RZ: <span id="gyroz">...</span></p>
-    <p>Tick: <span id="tick">...</span></p>
-  </div>
-</body>
-
-</html>
+    <p>Gyroskop in Grad: RX: <span id="gyrox">...</span>, RY: <span id="gyroy">...</span>, RZ: <span

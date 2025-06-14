@@ -24,14 +24,8 @@ void Display::update(GPSManager &gps, IMUManager &imu)
         lat = 47.3769f;
         lon = 8.5417f;
     }
-    else if (gps.getSatelitesCount() > 0 && lat != 0.0f && lon != 0.0f)
-    {
-        lastLat = lat;
-        lastLon = lon;
-    }
 
-    float decl = estimateDeclination(lat, lon);
-    setDeclination(decl);
+    declination = estimateDeclination(lat, lon);
 
     int lastLine = drawSensorData(gps, imu);
     drawCompass(imu, lastLine);
@@ -42,8 +36,6 @@ int Display::drawSensorData(GPSManager &gps, IMUManager &imu)
     int y = 0;
     char temp[9];
     String d, t;
-    float lat = gps.getLatitude();
-    float lon = gps.getLongitude();
     float alt = gps.getAltitude();
 
     // GPS
@@ -150,11 +142,6 @@ void Display::updateMaxLines()
 {
     int height = tft.height();
     maxLines = height / lineHeight;
-}
-
-void Display::setDeclination(float degrees)
-{
-    declination = degrees;
 }
 
 float Display::estimateDeclination(float lat, float lon)
