@@ -71,8 +71,6 @@ void setup()
 
   display.showMessage("Init IMU...");
   imu.begin();
-  display.showMessage("Kalibriere IMU... In alle Richtungen bewegen!");
-  imu.calibrateMagnetometer();  // beim ersten Start einmal ausführen
 
   display.showMessage("Init GPS...");
   gps.begin(GPS_BAUD, SERIAL_8N1, RXD_GPS, TXD_GPS);
@@ -149,5 +147,5 @@ void loop()
   WebSerialManager::println("Magnetometer Z: " + String(imu.getMagZ()));
 
 
-  delay(1000);
+  delay(500);
 }

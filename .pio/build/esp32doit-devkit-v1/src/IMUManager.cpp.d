@@ -140,5 +140,4 @@
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src/SPI.h \
  C:/Users/becir/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h \
  .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h \
- .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h \
- C:/Users/becir/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src/EEPROM.h
+ .pio/libdeps/esp32doit-devkit-v1/ICM20948_WE/src/xyzFloat.h

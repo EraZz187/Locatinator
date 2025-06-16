@@ -19,15 +19,15 @@ void setupWebServer(AsyncWebServer &server, GPSManager &gps, IMUManager &imu, lo
     doc["LON"] = sanitize(gps.getLongitude());
     doc["ALT"] = sanitize(gps.getAltitude());
     doc["TEMP"] = sanitize(imu.getTemperature());
+    doc["MAGX"] = sanitize(imu.getMagX());
+    doc["MAGY"] = sanitize(imu.getMagY());
+    doc["MAGZ"] = sanitize(imu.getMagZ());
     doc["ACCX"] = sanitize(imu.getAccX());
     doc["ACCY"] = sanitize(imu.getAccY());
     doc["ACCZ"] = sanitize(imu.getAccZ());
     doc["GYROX"] = sanitize(imu.getGyroX());
     doc["GYROY"] = sanitize(imu.getGyroY());
     doc["GYROZ"] = sanitize(imu.getGyroZ());
-    doc["MAGX"] = sanitize(imu.getMagX());
-    doc["MAGY"] = sanitize(imu.getMagY());
-    doc["MAGZ"] = sanitize(imu.getMagZ());
     doc["TICK"] = tick;
 
     String json;
@@ -39,7 +39,8 @@ void setupWebServer(AsyncWebServer &server, GPSManager &gps, IMUManager &imu, lo
   // Statische Dateien automatisch aus SPIFFS ausliefern
   server.serveStatic("/", SPIFFS, "/").setDefaultFile("index.html");
 
-  // Optional: 404-Handler
+  
+  // 404-Handler
   server.onNotFound([](AsyncWebServerRequest *request){
     request->send(404, "text/html", "<h1>Datei nicht gefunden</h1>");
   });

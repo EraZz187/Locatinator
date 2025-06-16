@@ -1,43 +1,45 @@
 #pragma once
+
 #include <Arduino.h>
 #include <Wire.h>
 #include <ICM20948_WE.h>
-#include <EEPROM.h>
 
 class IMUManager {
 public:
-    IMUManager(TwoWire &wire, uint8_t addr = 0x68);
-    ~IMUManager();
-
+    IMUManager(TwoWire &w = Wire, uint8_t addr = 0x68);
+    //~IMUManager();
     void begin();
     void update();
-    void calibrateMagnetometer(bool saveToEEPROM = true);
-    float getHeading() const;
 
-    // Getter
+    // Gesamtwerte
     float getTemperature() const;
     float getResultantG() const;
+
+    // ACC
     float getAccX() const;
     float getAccY() const;
     float getAccZ() const;
+
+    // GYRO
     float getGyroX() const;
     float getGyroY() const;
     float getGyroZ() const;
+
+    // MAG
     float getMagX() const;
     float getMagY() const;
     float getMagZ() const;
 
 private:
-    void configureSensor();
-    void loadMagOffsetsFromEEPROM();
-    void saveMagOffsetsToEEPROM();
-
-    TwoWire *_wire;
+    TwoWire* _wire;
     uint8_t _addr;
-    ICM20948_WE *_imu;
+    ICM20948_WE* _imu;
 
-    xyzFloat acc{}, gyr{}, mag{};
-    xyzFloat magOffset{};
-    float temp = 0;
-    float resultantG = 0;
+    xyzFloat acc;
+    xyzFloat gyr;
+    xyzFloat mag;
+    float temp;
+    float resultantG;
+
+    void configureSensor();
 };

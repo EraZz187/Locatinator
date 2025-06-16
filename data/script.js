@@ -55,10 +55,10 @@ function updateKompassFromMagnetometer(magX, magY, magZ, declination) {
 
   const nadel = document.getElementById("nadel");
   if (nadel) {
-    console.log(`→ Drehe SVG-Nadel: rotate(${svgHeading} 0 0)`);
-    nadel.setAttribute("transform", `rotate(${svgHeading} 0 0)`);
+    console.log(`→ Drehe SVG-Nadel: rotate(${svgHeading} 100 100)`);
+    nadel.setAttribute("transform", `rotate(${svgHeading} 100 100)`);
   } else {
-    console.error("❌ #nadel nicht gefunden");
+    console.error("❌ nadel nicht gefunden");
   }
 
   const gradAnzeige = document.getElementById("kompassGrad");
