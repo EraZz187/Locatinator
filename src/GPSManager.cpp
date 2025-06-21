@@ -9,13 +9,22 @@ GPSManager::GPSManager(uint8_t uartNumber)
 
 void GPSManager::begin(unsigned long baud, uint32_t config, int8_t rxPin, int8_t txPin) {
     gpsSerial->begin(baud, config, rxPin, txPin);
-    Serial.println("📡 UART gestartet!");
+    Serial.println("UART gestartet!");
 }
 
 void GPSManager::update() {
     while (gpsSerial->available() > 0) {
         gps.encode(gpsSerial->read());
     }
+}
+
+String GPSManager::rawData() {
+    String rawData = "";
+    while (gpsSerial->available() > 0) {
+        char c = gpsSerial->read();
+        rawData += c; // Ausgabe der rohen GPS-Daten auf die serielle Konsole
+    }
+    return rawData;
 }
 
 uint8_t GPSManager::getSatelitesCount() {

@@ -74,6 +74,7 @@ void setup()
 
   display.showMessage("Init GPS...");
   gps.begin(GPS_BAUD, SERIAL_8N1, RXD_GPS, TXD_GPS);
+  delay(1000);
 
   display.showMessage("Init WebSerial...");
   WebSerialManager::begin(&server);
@@ -115,7 +116,9 @@ void loop()
   display.update(gps, imu);
 
   
-  WebSerialManager::println("GPS:");
+  WebSerialManager::println("-----GPS-----");
+  WebSerialManager::println("Rohe GPS-Daten: " + gps.rawData());
+  Serial.println("Rohe GPS-Daten: " + gps.rawData());
   WebSerialManager::println("Gefundene Sateliten: " + String(gps.getSatelitesCount()));
 
   sprintf(temp, "%02d.%02d.%02d", gps.getDateTime().day, gps.getDateTime().month, gps.getDateTime().year);
@@ -130,7 +133,7 @@ void loop()
   WebSerialManager::println("Längengrad: " + String(gps.getLongitude()));
   WebSerialManager::println("Breitengrad: " + String(gps.getLatitude()));
 
-  WebSerialManager::println("IMU:");
+  WebSerialManager::println("-----IMU-----");
   WebSerialManager::println("Temperatur: " + String(imu.getTemperature()));
 
   WebSerialManager::println("Beschleunigungssensor X: " + String(imu.getAccX()));
@@ -145,7 +148,6 @@ void loop()
   WebSerialManager::println("Magnetometer X: " + String(imu.getMagX()));
   WebSerialManager::println("Magnetometer Y: " + String(imu.getMagY()));
   WebSerialManager::println("Magnetometer Z: " + String(imu.getMagZ()));
-
 
   delay(500);
 }

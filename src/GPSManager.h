@@ -19,6 +19,7 @@ public:
     GPSManager(uint8_t uartNumber); // z. B. 1 oder 2
     void begin(unsigned long baud, uint32_t config, int8_t rxPin, int8_t txPin);
     void update();
+    String rawData();
 
     uint8_t getSatelitesCount();
     float getLatitude();
