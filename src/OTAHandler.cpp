@@ -13,7 +13,6 @@ void setupOTA(const char* hostname) {
 
     
 
-    // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
     Serial.println("Start updating " + type); })
         .onEnd([]()
                { Serial.println("\nEnd"); })

@@ -10,6 +10,7 @@ async function fetchSensorDataLoop() {
     document.getElementById('lat').textContent = data.LAT.toFixed(6);
     document.getElementById('lon').textContent = data.LON.toFixed(6);
     document.getElementById('alt').textContent = data.ALT.toFixed(1);
+    document.getElementById('speed').textContent = data.SPEED.toFixed(3);
     document.getElementById('temp').textContent = data.TEMP.toFixed(1);
     document.getElementById('magx').textContent = data.MAGX.toFixed(3);
     document.getElementById('magy').textContent = data.MAGY.toFixed(3);

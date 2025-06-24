@@ -19,8 +19,6 @@ private:
     int maxLines = 0;
     int lineHeight = 20;
     float declination = 0.0;
-    float lat = 0.0f;
-    float lon = 0.0f;
 
     int drawSensorData(GPSManager &gps, IMUManager &imu);
     void printLine(const char *msg, int line);

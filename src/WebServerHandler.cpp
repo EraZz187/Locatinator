@@ -18,6 +18,7 @@ void setupWebServer(AsyncWebServer &server, GPSManager &gps, IMUManager &imu, lo
     doc["LAT"] = sanitize(gps.getLatitude());
     doc["LON"] = sanitize(gps.getLongitude());
     doc["ALT"] = sanitize(gps.getAltitude());
+    doc["SPEED"] = sanitize(gps.getSpeed());
     doc["TEMP"] = sanitize(imu.getTemperature());
     doc["MAGX"] = sanitize(imu.getMagX());
     doc["MAGY"] = sanitize(imu.getMagY());

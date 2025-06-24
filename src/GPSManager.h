@@ -27,6 +27,7 @@ public:
     float getAltitude();
     dateTime getDateTime();
     bool hasFix();
+    double getSpeed();
     
     HardwareSerial* gpsSerial;
 

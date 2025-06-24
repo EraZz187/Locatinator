@@ -22,7 +22,7 @@ String GPSManager::rawData() {
     String rawData = "";
     while (gpsSerial->available() > 0) {
         char c = gpsSerial->read();
-        rawData += c; // Ausgabe der rohen GPS-Daten auf die serielle Konsole
+        rawData += c; // Ausgabe der rohen GPS-Daten
     }
     return rawData;
 }
@@ -41,6 +41,10 @@ float GPSManager::getLongitude() {
 
 float GPSManager::getAltitude() {
     return gps.altitude.isValid() ? gps.altitude.meters() : 0.0f;
+}
+
+double GPSManager::getSpeed() {
+    return gps.speed.isValid() ? gps.speed.kmph() : 0.0f;
 }
 
 GPSManager::dateTime GPSManager::getDateTime() {

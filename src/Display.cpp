@@ -36,7 +36,6 @@ int Display::drawSensorData(GPSManager &gps, IMUManager &imu)
     int y = 0;
     char temp[9];
     String d, t;
-    float alt = gps.getAltitude();
 
     // GPS
     if (gps.getSatelitesCount() > 0)
@@ -57,22 +56,13 @@ int Display::drawSensorData(GPSManager &gps, IMUManager &imu)
     tft.setTextColor(TFT_GREEN, TFT_BLACK);
     printLine("GPS-Sensordaten:", y++);
 
-    // if (gps.getSatelitesCount() == 0)
-    //{
-    //     tft.setTextColor(TFT_YELLOW, TFT_BLACK);
-    //     printLine(String("Keine Satelliten- Zuerich").c_str(), y++);
-    //     lat = 47.3769f;
-    //     lon = 8.5417f;
-    //     alt = 408.0f;
-    // }
-
     tft.setTextColor(TFT_WHITE, TFT_BLACK);
     printLine(("Gefundene Satelliten: " + String(gps.getSatelitesCount())).c_str(), y++);
     printLine(("Datum: " + String(d)).c_str(), y++);
     printLine(("Zeit (UTC): " + String(t)).c_str(), y++);
-    printLine(("Hoehe: " + String(alt, 1) + " m.u.M").c_str(), y++);
-    printLine(("Breitengrad: " + String(lat, 6)).c_str(), y++);
-    printLine(("Laengengrad: " + String(lon, 6)).c_str(), y++);
+    printLine(("Hoehe: " + String(gps.getAltitude(), 1) + " m.u.M").c_str(), y++);
+    printLine(("Breitengrad: " + String(gps.getLatitude(), 6)).c_str(), y++);
+    printLine(("Laengengrad: " + String(gps.getLongitude(), 6)).c_str(), y++);
     y++;
 
     // IMU
